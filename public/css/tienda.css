@@ -1,0 +1,104 @@
+/* General Styles */
+body {
+    background-color: #9c113f !important;
+    font-family: 'Arial', sans-serif !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+h1 {
+    font-size: 2.5rem;
+    color: #fff !important;
+}
+
+.carrito-icon {
+    font-size: 2rem;
+    color: #fff ;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.carrito-icon:hover {
+    color: #000;
+}
+
+/* Categorías Bar */
+.categorias-bar {
+    display: flex;
+    gap: 15px;
+    justify-content: start;
+    flex-wrap: wrap;
+    padding: 15px 0;
+    border-bottom: 2px solid #000 !important;
+}
+
+.btn-category {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #000 !important;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-category:hover {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #fff ;
+}
+
+.btn-category.active {
+    background-color: #fff;
+    color: #fff;
+    border-color: #fff;
+}
+
+/* Manga Cards */
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+.titulo-link {
+    text-decoration: none;
+    color: inherit; /* Usa el color del texto actual */
+    transition: color 0.3s ease;
+}
+
+.titulo-link:hover {
+    color: #000; /* Cambia de color al pasar el mouse */
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #9c113f !important;
+    --bs-btn-border-color: #9c113f !important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #000 !important;
+    --bs-btn-hover-border-color: #9c113f !important;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #9c113f !important;
+    --bs-btn-active-border-color: #9c113f !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #9c113f !important;
+    --bs-btn-disabled-border-color: #9c113f !important;
+}
+h3 {
+    text-align: center;
+    color: #fff !important;
+}

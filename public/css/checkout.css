@@ -1,0 +1,65 @@
+/* General Styles */
+body {
+    background-color: #9c113f !important; /* Fondo acorde al estilo general */
+    font-family: 'Arial', sans-serif;
+    color: #fff; /* Texto blanco para contraste */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styles */
+.container {
+    background-color: #fff; /* Fondo blanco para el formulario */
+    color: #333; /* Texto oscuro para legibilidad */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+/* Header Styles */
+h1 {
+    font-size: 2.5rem;
+    color: #9c113f;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+.form-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #9c113f;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #9c113f;
+    box-shadow: 0 0 5px rgba(156, 17, 63, 0.5);
+}
+
+/* Button Styles */
+button {
+    background-color: #9c113f !important;
+    color: #fff;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #000 !important;
+    transform: scale(1.05);
+}

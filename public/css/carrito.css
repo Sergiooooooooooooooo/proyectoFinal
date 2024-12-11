@@ -1,0 +1,118 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif !important;
+  background-color: #9c113f !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: #fff !important;
+  letter-spacing: 2px;
+}
+
+/* Container */
+div {
+  width: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Paragraph for empty cart */
+p {
+  font-size: 1.2rem;
+  color: #777;
+  text-align: center;
+}
+
+/* Manga List */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fafafa;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #f4f4f9;
+}
+
+/* Manga Info */
+.manga-info {
+  display: flex;
+  align-items: center;
+}
+
+.manga-info img {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.manga-info h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.manga-info p {
+  margin: 5px 0 0;
+  color: #555;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Buttons */
+button {
+  padding: 10px 15px;
+  background-color: #9c113f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #000;
+  transform: scale(1.05);
+}
+
+/* Link to store */
+a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  padding: 12px 25px;
+  background-color: #ecf0f1;
+  border-radius: 5px;
+  margin-top: 30px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+a:hover {
+  background-color: #bdc3c7;
+  transform: scale(1.05);
+}

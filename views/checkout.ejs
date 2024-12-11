@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Checkout</h1>
+        <form action="/formulario" method="POST">
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu nombre" required>
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Ingresa tu apellido" required>
+            </div>
+
+            <!-- Documento -->
+            <div class="mb-3">
+                <label for="documento" class="form-label">Documento</label>
+                <input id="documento" name="documento" class="form-control" placeholder="Número de documento" required></input>
+            </div>
+
+            <!-- Direccion -->
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Ingresa tu dirección" required>
+            </div>
+
+            <!-- Telefono -->
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Ingresa tu número de teléfono" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmacionManga" class="form-label">Confirmacion de producto</label>
+                <input type="text" id="confirmacionManga" name="confirmacionManga" class="form-control" placeholder="Confirmanos tu manga c:" required>
+            </div>
+
+            <!-- Campo oculto para IDs de los mangas -->
+            <input type="hidden" name="mangas" id="mangasIds" value="">
+
+            <!-- Botón de Enviar -->
+            <button type="submit" class="btn btn-primary w-100">Confirmar pedido</button>
+        </form>
+    </div>
+
+    <script>
+        // Crear un array con los IDs de los mangas del carrito, pasando de la sesión
+        const mangasEnCarrito = <%= JSON.stringify(mangas) %>;
+    
+        // Coloca los IDs de los mangas en el campo oculto para que se envíen con el formulario
+        document.getElementById("mangasIds").value = JSON.stringify(mangasEnCarrito || []); // Guardar los IDs como string
+    </script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="/css/carrito.css">
+</head>
+<body>
+
+  <div>
+    <h1>Carrito de Compras</h1>
+
+    <!-- Mostrar mensaje si no hay mangas en el carrito -->
+    <% if (mangas.length === 0) { %>
+      <p>No hay mangas en el carrito.</p>
+    <% } else { %>
+      <!-- Si hay mangas, se muestran aquí -->
+      <ul>
+        <% mangas.forEach(manga => { %>
+          <li>
+            <div class="manga-info">
+              <!-- Mostramos la imagen del manga correctamente -->
+              <img src="/images/<%= manga.imagen %>" alt="<%= manga.titulo %>">
+              <div>
+                <h3><%= manga.titulo %></h3>
+                <p>Precio: <%= manga.precio %></p>
+              </div>
+            </div>
+            
+           <form action="/carrito/destroy/<%= manga.id %>" method="POST">
+              <button type="submit">Eliminar</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+
+      <!-- Botón para terminar la compra -->
+      <form action="/formulario" method="GET">
+        <button type="submit">Terminar la compra</button>
+      </form>
+    <% } %>
+
+    
+
+    <br />
+    <a href="/">Volver a la tienda</a>
+  </div>
+
+</body>
+</html>

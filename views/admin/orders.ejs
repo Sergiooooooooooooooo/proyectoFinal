@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pedidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+     <!--Navbar-->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">CRUD</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= user.username %>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/ordenesAuth/logout">Logout</a></li>
+                  </ul>
+              </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 alert alert-success"> 
+                <h1 class="text-center">Pedidos</h1>
+            </div>
+            <div class="col-12">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">nombre</th>
+                        <th scope="col">documento</th>
+                        <th scope="col">apellido</th>
+                        <th scope="col">direccion</th>
+                        <th scope="col">telefono</th>
+                        <th scope="col">confirmacion del manga</th>
+                        <th scope="col">Accions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% formularios.forEach( formulario => { %>
+                        <tr>
+                            <th scope="row"><%= formulario.id %></th>
+                            <td><%= formulario.nombre %></td>
+                            <td><%= formulario.documento %></td>
+                            <td><%= formulario.apellido %></td>
+                            <td><%= formulario.direccion %></td>
+                            <td><%= formulario.telefono %></td>
+                            <td><%= formulario.confirmacionManga %></td>
+                            <td>
+                              <button 
+                              type="button"
+                              class="btn btn-warning"
+                              data-bs-toggle="modal"
+                              data-bs-target="#formularioModal"
+                              onclick="openFormularioModal('<%= formulario.id %>', '<%= formulario.nombre %>', '<%= formulario.documento %>', '<%= formulario.apellido %>','<%= formulario.direccion %>','<%= formulario.telefono %>', '<%= formulario.confirmacionManga %>')">
+                              Edit             
+                              </button>
+                              <form 
+                                action="/admin/orders/destroy/<%= formulario.id %>"
+                                method="post"
+                                onsubmit="return confirm('Are you sure you want to delete this')"
+                                class="d-inline">
+                                <button
+                                  type="submit"
+                                  class="btn btn-danger">
+                                  Delete
+                                </button>
+                              </form>
+                            </td>
+                        </tr>
+                   <% }) %>
+                    </tbody>
+                  </table>
+ <!-- Button trigger modal -->
+ <div class="col-12 col-md-3">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formularioModal" onclick="openFormularioModal()">
+Add Formulario
+</button>
+</div>
+                  
+<!-- Modal -->
+<div class="modal fade" id="formularioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add/Edit Categoria</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form action="" method="post" id="formularioForm"> 
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="formularioNombre" class="form-label">Name</label>
+              <input name="nombre" type="text" class="form-control" id="formularioNombre" aria-describedby="formularioNombreHelp">
+              <div id="formularioNombreHelp" class="form-text">Add name.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="formularioDocumento" class="form-label">Documento</label>
+                <input name="documento" type="text" class="form-control" id="formularioDocumento" aria-describedby="formularioDocumentoHelp">
+                <div id="formularioDocumentoHelp" class="form-text">Add ID.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="formularioApellido" class="form-label">Lastname</label>
+                <input name="apellido" type="text" class="form-control" id="formularioApellido" aria-describedby="formularioApellidoHelp">
+                <div id="formularioApellidoHelp" class="form-text">Add lastname.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="formularioDireccion" class="form-label">Adress</label>
+                <input name="direccion" type="text" class="form-control" id="formularioDireccion" aria-describedby="formularioDireccionHelp">
+                <div id="formularioDireccionHelp" class="form-text">Add adress.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="formularioTelefono" class="form-label">Telephone</label>
+                <input name="telefono" type="text" class="form-control" id="formularioTelefono" aria-describedby="formularioTelefonoHelp">
+                <div id="formularioTelefonoHelp" class="form-text">Add phone number.</div>
+              </div>
+
+              
+              <div class="mb-3">
+                <label for="formularioConfirmacionManga" class="form-label">Manga confirmation</label>
+                <input name="confirmacionManga" type="text" class="form-control" id="formularioConfirmacionManga" aria-describedby="formularioConfirmacionMangaHelp">
+                <div id="formularioConfirmacionMangaHelp" class="form-text">Add the manga.</div>
+              </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>  
+    </div>
+  </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openFormularioModal (id = null , nombre = '', documento = '', apellido = '', direccion = '', telefono = '', confirmacionManga = '') {
+          if (id) { 
+            document.getElementById('formularioForm').action = `/admin/orders/edit/${id}`;
+          } else {
+            document.getElementById('formularioForm').action = '/admin/orders';
+          }
+          document.getElementById('formularioNombre').value = nombre;
+          document.getElementById('formularioDocumento').value = documento;
+          document.getElementById('formularioApellido').value = apellido;
+          document.getElementById('formularioDireccion').value = direccion;
+          document.getElementById('formularioTelefono').value = telefono;
+          document.getElementById('formularioTelefono').value = telefono;
+          document.getElementById('formularioConfirmacionManga').value = confirmacionManga;
+        }
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

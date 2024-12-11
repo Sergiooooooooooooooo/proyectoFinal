@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mangas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+     <!--Navbar-->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">CRUD</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= user.username %>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                  </ul>
+              </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 alert alert-success"> 
+                <h1 class="text-center">Manga</h1>
+            </div>
+            <div class="col-12">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">titulo</th>
+                        <th scope="col">autor</th>
+                        <th scope="col">genero</th>
+                        <th scope="col">volumenes</th>
+                        <th scope="col">fechaPublicacion</th>
+                        <th scope="col">sinopsis</th>
+                        <th scope="col">calificacion</th>
+                        <th scope="col">editorial</th>
+                        <th scope="col">precio</th>
+                        <th scope="col">imagen</th>
+                        <th scope="col">Accions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% mangas.forEach( manga => { %>
+                        <tr>
+                            <th scope="row"><%= manga.id %></th>
+                            <td><%= manga.titulo %></td>
+                            <td><%= manga.autor %></td>
+                            <td><%= manga.genero %></td>
+                            <td><%= manga.volumenes %></td>
+                            <td><%= manga.fechaPublicacion %></td>
+                            <td><%= manga.sinopsis %></td>
+                            <td><%= manga.calificacion %></td>
+                            <td><%= manga.editorial %></td>
+                            <td><%= manga.precio %></td>
+                            <td><%= manga.imagen %></td>
+                            <td>
+                              <button 
+                              type="button"
+                              class="btn btn-warning"
+                              data-bs-toggle="modal"
+                              data-bs-target="#mangaModal"
+                              onclick="openMangaModal('<%= manga.id %>', '<%= manga.titulo %>', '<%= manga.autor %>', '<%= manga.genero %>', '<%= manga.volumenes %>', '<%= manga.fechaPublicacion %>', '<%= manga.sinopsis %>', '<%=manga.calificacion %>', '<%= manga.editorial%>', '<%=manga.precio %>', '<%=manga.imagen %>')">
+                              Edit             
+                              </button>
+                              <form 
+                                action="/admin/productos/destroy/<%= manga.id %>"
+                                method="post"
+                                onsubmit="return confirm('Are you sure you want to delete this manga')"
+                                class="d-inline">
+                                <button
+                                  type="submit"
+                                  class="btn btn-danger">
+                                  Delete
+                                </button>
+                              </form>
+                            </td>
+                        </tr>
+                   <% }) %>
+                    </tbody>
+                  </table>
+ <!-- Button trigger modal -->
+ <div class="col-12 col-md-3">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mangaModal" onclick="openMangaModal()">
+Add Manga
+</button>
+</div>
+                  
+<!-- Modal -->
+<div class="modal fade" id="mangaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add/Edit Manga</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form action="" method="post" id="mangaForm"> 
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="mangaTitulo" class="form-label">Manga Titule</label>
+              <input name="titulo" type="text" class="form-control" id="mangaTitulo" aria-describedby="mangaTituloHelp">
+              <div id="mangaTituloHelp" class="form-text">Add a manga name.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaAutor" class="form-label">Manga Autor</label>
+              <input name="autor" type="text" class="form-control" id="mangaAutor" aria-describedby="mangaAutorHelp">
+              <div id="mangaAutorHelp" class="form-text">Adds the manga author.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaGenero" class="form-label">Manga Genre</label>
+              <input name="genero" type="text" class="form-control" id="mangaGenero" aria-describedby="mangaGeneroHelp">
+              <div id="mangaGeneroHelp" class="form-text">Add the manga genre.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaVolumenes" class="form-label">Manga Volume</label>
+              <input name="volumenes" type="text" class="form-control" id="mangaVolumenes" aria-describedby="mangaVolumenesHelp">
+              <div id="mangaVolumenesHelp" class="form-text">Add the manga volume.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="mangaFecha" class="form-label">Manga Date</label>
+              <input name="fechaPublicacion" type="date" class="form-control" id="mangaFecha" aria-describedby="mangaFechaHelp">
+              <div id="mangaFechaHelp" class="form-text">Add the publication date of the manga.</div>
+            </div>
+          
+            <div class="mb-3">
+              <label for="mangaSinopsis" class="form-label">Manga Synopsis</label>
+              <input name="sinopsis" type="text" class="form-control" id="mangaSinopsis" aria-describedby="mangaSinopsisHelp">
+              <div id="mangaSinopsisHelp" class="form-text">Add the manga synopsis.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaCalificacion" class="form-label">Manga Rating</label>
+              <input name="calificacion" type="text" class="form-control" id="mangaCalificacion" aria-describedby="mangaCalificacionHelp">
+              <div id="mangaCalificacionHelp" class="form-text">Add the manga rating.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaEditorial" class="form-label">Manga Editorial</label>
+              <input name="editorial" type="text" class="form-control" id="mangaEditorial" aria-describedby="mangaEditorialHelp">
+              <div id="mangaEditorialHelp" class="form-text">Add the manga publisher.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaPrecio" class="form-label">Manga Precio</label>
+              <input name="precio" type="text" class="form-control" id="mangaPrecio" aria-describedby="mangaPrecioHelp">
+              <div id="mangaPrecioHelp" class="form-text">add manga price.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mangaImagen" class="form-label">Manga Imagen</label>
+              <input name="imagen" type="text" class="form-control" id="mangaImagen" aria-describedby="mangaImagenHelp">
+              <div id="mangaImagenHelp" class="form-text">add manga image.</div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>  
+    </div>
+  </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <script>
+      function openMangaModal (id = null , titulo = '', autor = '', genero = '', volumenes = '', fechaPublicacion = '', sinopsis = '', calificacion = '', editorial = '', precio = '', imagen = '') {
+        if (id) { 
+          document.getElementById('mangaForm').action = `/admin/productos/edit/${id}`;
+        } else {
+          document.getElementById('mangaForm').action = '/admin/productos';
+        }
+        document.getElementById('mangaTitulo').value = titulo;
+        document.getElementById('mangaAutor').value = autor;
+        document.getElementById('mangaGenero').value = genero;
+        document.getElementById('mangaVolumenes').value = volumenes;
+        document.getElementById('mangaFecha').value = fechaPublicacion;
+        document.getElementById('mangaSinopsis').value = sinopsis;
+        document.getElementById('mangaCalificacion').value = calificacion;
+        document.getElementById('mangaEditorial').value = editorial;
+        document.getElementById('mangaPrecio').value = precio;
+        document.getElementById('mangaImagen').value = imagen;
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

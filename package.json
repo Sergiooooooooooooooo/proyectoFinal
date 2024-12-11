@@ -1,0 +1,39 @@
+{
+  "name": "api_mangas",
+  "version": "0.0.1",
+  "description": "Taller API con tematica de mangas",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "npx nodemon index.js"
+  },
+  "keywords": [
+    "API",
+    "Node",
+    "Express",
+    "JSON",
+    "fs"
+  ],
+  "author": "Sergio Cardona Buitrago",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "joi": "^17.13.3",
+    "nodemon": "^3.1.7",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5",
+    "winston": "^3.15.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}
